@@ -1,0 +1,83 @@
+
+.Box {
+    margin-top: 20px;
+    background-image: url("ok.png");
+    background-size: medium;
+    background-repeat: no-repeat;
+    background-position: center;
+    image-resolution: 10%;
+    min-height: 10%;
+    padding-bottom: 9%;
+    border-image: fill 0(#0003,#000);
+}
+
+
+.Ram {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30px;
+}
+
+.Mast, .Stud {
+    margin: 10px 0;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+.Mast {
+    margin-left: 40%;
+}
+
+.Stud {
+    margin-left: 90px;
+}
+
+
+.Mast a, .Stud a {
+    text-decoration: none;
+    color: #333;
+    white-space:initial;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    transition: color 0.1s ease;
+}
+
+.Mast a:hover, .Stud a:hover {
+    color: whitesmoke; 
+}
+
+
+
+.Mark {
+    justify-content: center;
+    color:black;
+    margin-left: 45%;
+    margin-bottom: 10px;
+    margin-top: 11%;
+    padding-top: 5px;
+    text-decoration:underline;
+
+    
+}body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.Marksheet {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.skl {
+    text-align: center;
+    color: #333;
+}

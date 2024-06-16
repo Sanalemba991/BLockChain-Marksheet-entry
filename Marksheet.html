@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet</title>
+	<link rel="stylesheet" href="okal.css">
+</head>
+<body>
+    <div class="Marksheet">
+        <h2 class="skl">Marksheet Entry Data</h2>
+        <div>
+            <label  for="regdno">Regd no:</label>
+            <input type="text" id="regdno" placeholder="Enter Registration Number" />
+        </div>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter Name" />
+        </div>
+        <div>
+            <label for="rollNo">Roll No:</label>
+            <input type="text" id="rollNo" placeholder="Enter Roll Number" />
+        </div>
+        <div>
+            <label for="classValue">Class:</label>
+            <input type="text" id="classValue" placeholder="Enter Class" />
+        </div>
+        <div>
+            <label for="collegeName">College Name:</label>
+            <input type="text" id="collegeName" placeholder="Enter College Name" />
+        </div>
+        <div>
+            <label for="grade">Grade:</label>
+            <input type="text" id="grade" placeholder="Enter Grade" />
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <input type="text" id="address" placeholder="Enter Address" />
+        </div>
+        <div>
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" placeholder="Enter Gender" />
+        </div>
+        <div>
+            <label for="sub">Subject:</label>
+            <input type="text" id="sub" placeholder="Enter Subject" />
+        </div>
+        <div>
+            <label for="total">Total Marks:</label>
+            <input type="text" id="total" placeholder="Enter Total Marks" />
+        </div>
+        <button id="submit">Submit</button>
+       
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script>
+        // Connect to the Ethereum network using Web3.js
+        const web3 = new Web3("http://localhost:8545"); // Update the URL with your Ethereum node URL
+
+        // Contract address and ABI
+        const contractAddress = "0x2277C33a697c1aA2C2eb4fB470186F24AF77f307"; // Replace with your contract address
+        const contractABI =
+        [
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "sub",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "total",
+				"type": "int256"
+			}
+		],
+		"name": "setMark",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "rollno",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "class",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "collegeName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "grade",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "Address",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "gender",
+				"type": "string"
+			}
+		],
+		"name": "setUser",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "getAccount",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			}
+		],
+		"name": "getMarkWithUserDetails",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			}
+		],
+		"name": "getUser",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"name": "marksmapping",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "sub",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "total",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "student",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"name": "usermapping",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "rollno",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "class",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "collegeName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "grade",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "Address",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "gender",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+		
+
+        // Instantiate the contract
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+        // Event listener for form submission
+        document.getElementById("submit").addEventListener("click", async function () {
+            try {
+                // Get form input values
+                const regdno = parseInt(document.getElementById("regdno").value);
+                const name = document.getElementById("name").value;
+                const rollNo = parseInt(document.getElementById("rollNo").value);
+                const classValue = parseInt(document.getElementById("classValue").value);
+                const collegeName = document.getElementById("collegeName").value;
+                const grade = document.getElementById("grade").value;
+                const address = document.getElementById("address").value;
+                const gender = document.getElementById("gender").value;
+                const sub = document.getElementById("sub").value;
+                const total = parseInt(document.getElementById("total").value);
+
+                // Call the setUser function of the contract
+                await contract.methods.setUser(
+                    regdno,
+                    name,
+                    rollNo,
+                    classValue,
+                    collegeName,
+                    grade,
+                    address,
+                    gender
+                ).send({ from: '0xb1C75404E9628Ce113f2Ce0Ba91885AFABBcCffa', gas: 3000000 });
+
+                alert("Form submitted successfully!"); // Show success message
+            } catch (error) {
+                console.error('Error submitting form data:', error.message); // Log error
+                alert("Error submitting form data. Please try again."); // Show error message
+            }
+        });
+    </script>
+</body>
+</html>

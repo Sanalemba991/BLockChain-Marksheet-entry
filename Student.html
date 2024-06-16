@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet</title>
+</head>
+
+<body>
+    <div class="Marksheet">
+        <h2>Student</h2>
+        <div>
+            <label>Regd no:</label>
+            <input type="text" id="regdno" placeholder="Enter Registration Number" />
+        </div>
+        <div>
+            <label>Name:</label>
+            <input type="text" id="name" placeholder="Enter Name" />
+        </div>
+        <div>
+            <label>Roll No:</label>
+            <input type="text" id="rollNo" placeholder="Enter Roll Number" />
+        </div>
+        <div>
+            <label>Class:</label>
+            <input type="text" id="classValue" placeholder="Enter Class" />
+        </div>
+        <div>
+            <label>College Name:</label>
+            <input type="text" id="collegeName" placeholder="Enter College Name" />
+        </div>
+        <div>
+            <label>Grade:</label>
+            <input type="text" id="grade" placeholder="Enter Grade" />
+        </div>
+        <div>
+            <label>Address:</label>
+            <input type="text" id="address" placeholder="Enter Address" />
+        </div>
+        <div>
+            <label>Gender:</label>
+            <input type="text" id="gender" placeholder="Enter Gender" />
+        </div>
+        <div>
+            <label>Subject:</label>
+            <input type="text" id="sub" placeholder="Enter Subject" />
+        </div>
+        <div>
+            <label>Total Marks:</label>
+            <input type="text" id="total" placeholder="Enter Total Marks" />
+        </div>
+        <button id="submit">Submit</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const ganacheEndpoint = "http://localhost:8545";
+            const provider = new Web3.providers.HttpProvider(ganacheEndpoint);
+            const web3 = new Web3(provider);
+
+            const contractAddress = "0xA3C916CCfa765EfB05AcF2576ad13cB59fC7Db9E";
+            const contractABI = [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "Regdno",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "name",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "int256",
+                            "name": "rollno",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "int256",
+                            "name": "class",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "collegeName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "grade",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "Address",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "gender",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "setUser",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "int256",
+                            "name": "Regdno",
+                            "type": "int256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "sub",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "int256",
+                            "name": "total",
+                            "type": "int256"
+                        }
+                    ],
+                    "name": "setMark",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
+                // Add other function ABIs as needed
+            ];
+
+            const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+            document.getElementById("submit").addEventListener("click", async function () {
+                try {
+                    const regdno = parseInt(document.getElementById("regdno").value);
+                    const name = document.getElementById("name").value;
+                    const rollNo = parseInt(document.getElementById("rollNo").value);
+                    const classValue = parseInt(document.getElementById("classValue").value);
+                    const collegeName = document.getElementById("collegeName").value;
+                    const grade = document.getElementById("grade").value;
+                    const address = document.getElementById("address").value;
+                    const gender = document.getElementById("gender").value;
+                    const sub = document.getElementById("sub").value;
+                    const total = parseInt(document.getElementById("total").value);
+
+                    await contract.methods.setUser(
+                        regdno,
+                        name,
+                        rollNo,
+                        classValue,
+                        collegeName,
+                        grade,
+                        address,
+                        gender
+                    ).send({ from: '0xB7A1E9f247F869334d5a8f5722F7bB37459f2043',gas:3000000  });
+
+              
+
+                    console.log('Form data submitted successfully');
+                } catch (error) {
+                    console.error('Error submitting form data:', error.message);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marksheet</title>
+	<link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="Marksheet">
+       
+        <h2 class="alo">Student</h2>
+        <div>
+            <label class="op">Regd no:</label>
+            <input class="lp" type="number" id="regdno" placeholder="Enter Registration Number" />
+        </div>
+      
+        <button id="submit">Submit</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const ganacheEndpoint = "http://localhost:8545";
+            const provider = new Web3.providers.HttpProvider(ganacheEndpoint);
+            const web3 = new Web3(provider);
+
+            const contractAddress = "0x2277C33a697c1aA2C2eb4fB470186F24AF77f307"; // Update with your contract address
+            const contractABI = 
+                // Contract ABI here...
+                [
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "sub",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "total",
+				"type": "int256"
+			}
+		],
+		"name": "setMark",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "rollno",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "class",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "collegeName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "grade",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "Address",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "gender",
+				"type": "string"
+			}
+		],
+		"name": "setUser",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "getAccount",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			}
+		],
+		"name": "getMarkWithUserDetails",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			}
+		],
+		"name": "getUser",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"name": "marksmapping",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "sub",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "total",
+				"type": "int256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "student",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "int256",
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"name": "usermapping",
+		"outputs": [
+			{
+				"internalType": "int256",
+				"name": "Regdno",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "rollno",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "class",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "collegeName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "grade",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "Address",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "gender",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+            const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+            document.getElementById("submit").addEventListener("click", async function () {
+                try {
+                    const regdno = parseInt(document.getElementById("regdno").value);
+
+                    // Submit user data to the contract
+                    await contract.methods.getUser(regdno).send({ from: '0xb1C75404E9628Ce113f2Ce0Ba91885AFABBcCffa', gas: 3000000 });
+
+                    console.log('Form data submitted successfully');
+
+                    // After submitting user data, fetch user details
+                    const userDetails = await contract.methods.getUser(regdno).call();
+
+                    // Construct URL with user details as parameters
+                    const urlParams = new URLSearchParams();
+                    urlParams.set('regdNo', userDetails[0]);
+                    urlParams.set('name', userDetails[1]);
+                    urlParams.set('rollNo', userDetails[2]);
+                    urlParams.set('class', userDetails[3]);
+                    urlParams.set('collegeName', userDetails[4]);
+                    urlParams.set('grade', userDetails[5]);
+                    urlParams.set('address', userDetails[6]);
+                    urlParams.set('gender', userDetails[7]);
+
+                    // Redirect to userDetails.html with parameters
+                    window.location.href = 'userDetails.html?' + urlParams.toString();
+
+                } catch (error) {
+                    console.error('Error submitting form data:', error.message);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

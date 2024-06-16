@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="stylesheet" href="pkl.css">
+
+</head>
+<body>
+    <div class="JKL">User Details</div>
+
+    <div id="userDetails"></div>
+
+    <script>
+        // Function to parse URL parameters
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            const userDetails = {};
+
+            for (const [key, value] of params) {
+                userDetails[key] = value;
+            }
+
+            return userDetails;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get user details from URL parameters
+            const userDetails = getUrlParams();
+
+            // Display user details
+            const userDetailsDiv = document.getElementById('userDetails');
+            userDetailsDiv.innerHTML = `
+                <p>Registration Number: ${userDetails.regdNo}</p>
+                <p>Name: ${userDetails.name}</p>
+                <p>Roll Number: ${userDetails.rollNo}</p>
+                <p>Class: ${userDetails.class}</p>
+                <p>College Name: ${userDetails.collegeName}</p>
+                <p>Grade: ${userDetails.grade}</p>
+                <p>Address: ${userDetails.address}</p>
+                <p>Gender: ${userDetails.gender}</p>
+            `;
+        });
+    </script>
+</body>
+</html>
